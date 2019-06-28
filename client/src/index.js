@@ -25,6 +25,7 @@ ReactDOM.render(
       <Route path="/edit/:id" component={Edit} />
       <Route path="/create" component={Create} />
       <Route path="/show/:id" component={Show} />
+      <Route />
     </div>
   </Route>,
   document.getElementById("root")
