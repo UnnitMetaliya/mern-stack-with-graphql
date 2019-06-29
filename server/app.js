@@ -24,6 +24,7 @@ mongoose
   .then(() => console.log("connection successful"))
   .catch(err => console.error(err));
 
+// app declaration needs to be on top
 var app = express();
 
 //configuring GraphQL
