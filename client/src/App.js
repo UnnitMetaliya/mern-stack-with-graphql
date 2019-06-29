@@ -1,6 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
+
+import gql from "graphql-tag";
+import { Query } from "react-apollo";
 
 function App() {
   return (
