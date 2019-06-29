@@ -3,7 +3,10 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+
 var mongoose = require("mongoose");
+var dotenv = require("dotenv");
+dotenv.config();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -38,5 +41,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+//mongodb connection
+
+mongoose
+  .connect(process.env.MONGOLAB_URI, {
+    promiseLibrary: require("bluebird"),
+    useNewUrlParser: true
+  })
+  .then(() => console.log("connection successful"))
+  .catch(err => console.error(err));
 
 module.exports = app;
