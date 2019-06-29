@@ -4,9 +4,26 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+// for mongodb connection
 var mongoose = require("mongoose");
 var dotenv = require("dotenv");
 dotenv.config();
+
+var graphqlHTTP = require("express-graphql");
+var schema = require("./graphql/bookSchemas");
+var cors = require("cors");
+
+//configuring GraphQL
+app.use("*", cors());
+app.use(
+  "/graphql",
+  cors(),
+  graphqlHTTP({
+    schema: schema,
+    rootValue: global,
+    graphiql: true
+  })
+);
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
