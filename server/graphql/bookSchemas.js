@@ -87,6 +87,7 @@ var mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: function() {
     return {
+      //CREATE
       addBook: {
         type: bookType,
         args: {
@@ -118,6 +119,7 @@ var mutation = new GraphQLObjectType({
           return newBook;
         }
       },
+      // READ, UPDATE
       updateBook: {
         type: bookType,
         args: {
@@ -162,6 +164,7 @@ var mutation = new GraphQLObjectType({
           );
         }
       },
+      //DELETE
       removeBook: {
         type: bookType,
         args: {
