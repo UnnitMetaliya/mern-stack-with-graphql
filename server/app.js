@@ -15,6 +15,7 @@ var usersRouter = require("./routes/users");
 // for mongodb connection
 var mongoose = require("mongoose");
 var cors = require("cors");
+var path = require("path");
 
 mongoose
   .connect(process.env.MONGOLAB_URI, {
@@ -24,8 +25,18 @@ mongoose
   .then(() => console.log("connection successful"))
   .catch(err => console.error(err));
 
-// app declaration needs to be on top
+// app declaration needs  to be on top
 var app = express();
+
+// Serve static assets uf ub production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../", "client", "build", "index"));
+  });
+}
 
 //configuring GraphQL
 app.use("*", cors());
