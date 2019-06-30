@@ -13,21 +13,21 @@ import Show from "./components/Show";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
-const client = new ApolloClient();
+const client = new ApolloClient({
+  uri: "http://localhost:3000/graphql"
+});
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <Router>
+      <div>
+        <Route exact path="/" component={App} />
+        <Route path="/edit/:id" component={Edit} />
+        <Route path="/create" component={Create} />
+        <Route path="/show/:id" component={Show} />
+      </div>
+    </Router>
   </ApolloProvider>,
-  <Route>
-    <div>
-      <Route exact path="/" component={App} />
-      <Route path="/edit/:id" component={Edit} />
-      <Route path="/create" component={Create} />
-      <Route path="/show/:id" component={Show} />
-      <Route />
-    </div>
-  </Route>,
   document.getElementById("root")
 );
 

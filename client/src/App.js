@@ -16,8 +16,52 @@ const GET_BOOKS = gql`
   }
 `;
 
-function App() {
-  return <div className="App" />;
+class App extends Component {
+  render() {
+    return (
+      <Query pollInterval={50000} query={GET_BOOKS}>
+        {({ loading, error, data }) => {
+          if (loading) return "Loading...";
+          if (error) return `Error! ${error.message}`;
+
+          return (
+            <div className="container">
+              <div className="panel panel-default">
+                <div className="panel-heading">
+                  <h3 className="panel-title">My Reading List</h3>
+                  <br />
+                  <h4>
+                    <Link to="/create">Add Book</Link>
+                  </h4>
+                  <br />
+                </div>
+                <div className="panel-body">
+                  <table className="table table-stripe">
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.books.map((book, index) => (
+                        <tr key={index}>
+                          <td>
+                            <Link to={`/show/${book._id}`}>{book.title}</Link>
+                          </td>
+                          <td>{book.title}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          );
+        }}
+      </Query>
+    );
+  }
 }
 
 export default App;
