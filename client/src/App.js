@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.css";
 
 import gql from "graphql-tag";
@@ -49,7 +48,7 @@ class App extends Component {
                           <td>
                             <Link to={`/show/${book._id}`}>{book.title}</Link>
                           </td>
-                          <td>{book.title}</td>
+                          <td>{book.author}</td>
                         </tr>
                       ))}
                     </tbody>

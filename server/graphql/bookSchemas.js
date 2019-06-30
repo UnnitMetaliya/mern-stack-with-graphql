@@ -119,6 +119,7 @@ var mutation = new GraphQLObjectType({
           return newBook;
         }
       },
+
       // READ, UPDATE
       updateBook: {
         type: bookType,
